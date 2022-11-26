@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function vozvratvisoti() {
+                return $('.block').outerHeight();
+            }
+            let h = vozvratvisoti();            
+            $('.visota').append(h);
+            
+            addEventListener('scroll', function() {scrollval()})
+            function scrollval() {
+                let scrolled = $(window).scrollTop();
+                $('.scrollvalue').html(scrolled);
+            }
+
+            let foobar = new Array(101);
+            for (let i = 1; i < foobar.length; i++) {
+                foobar[i] = i + " ";
+                if (i % 3 == 0 && i % 5 == 0) {
+                    foobar[i] = "foobar ";
+                } else if (i % 3 == 0) {
+                    foobar[i] = "foo ";
+                } else if (i % 5 == 0) {
+                    foobar[i] = "bar ";
+                }
+            }            
+            $('.block').html(foobar);
+        })
+    </script>
+    <style>
+        .block {
+            background-color: green;
+            height: 100px;
+            padding-top: 20px;
+            word-wrap: break-word;
+            color: white;
+        }
+        p {
+            width: 20%;
+        }
+        .stolb {
+            display: flex;
+            float: right;                        
+            width: 200px;
+            height: 1500px;
+            background-color: red;
+        }
+        .scrollvalue {
+            margin-top: 500px;
+        }
+        .kvadrat {
+            position: absolute;
+            top: 150px;
+            left: 200px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        .zone {
+            position: absolute;
+            top: 200px;
+            left: 600px;
+            background-color: yellow;
+            width: 300px;
+            height: 300px;
+        }
+        .absolution {
+            position: relative;
+            left: 300px;
+            background-color: grey;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <span class="kvadrat"></span>
+    <div class="block"></div>
+    <span class="stolb">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, voluptatum.</span>
+    <p class="visota"></p>
+    <div class="zone">
+        <div class="absolution"></div>
+    </div>
+    <p class="scrollvalue">0</p>    
+</body>
+</html>
+
+<script>
+    /*$(document).ready(function() {
+    $('.header').animate({marginTop: '15%', opacity: '1'}, 500);
+
+    $('#rightswitch').click(function () {
+        $('#mainimg').attr({'src': 'jap1.jpg'});
+        switches();
+    })
+    $('#leftswitch').click(function () {
+        $('#mainimg').attr({'src': 'swis1.jpg'});
+        switches();
+    })
+    
+    function switches() {
+        let bg = $('#mainimg').attr('src');
+        if (bg == "swis1.jpg") {
+            $('#leftswitch').hide();
+            $('#rightswitch').show();
+            $('#secondimg').attr({'src': 'swis2.jpg'});
+            $('#thirdimg').attr({'src': 'swis3.jpg'});
+            $('#fourthimg').attr({'src': 'swis4.jpg'});
+        }
+        else {
+            $('#rightswitch').hide();
+            $('#leftswitch').show();
+            $('#secondimg').attr({'src': 'jap2.jpg'});
+            $('#thirdimg').attr({'src': 'jap3.jpg'});
+            $('#fourthimg').attr({'src': 'jap4.jpg'});
+        }
+    } 
+    window.onload = switches();  
+})*/
+
+/*const parallaxitems = document.querySelector('#thirdimg');
+            window.addEventListener('scroll', ScrollOn);
+            function ScrollOn() {
+                for (let index = 0 ; index < parallaxitems.length; index++)
+                {
+                    const animItem = parallaxitems[index];
+                    const animItemHeight = animItem.offsetHeight;
+                    const animItemOffset = offset(animItem).top;
+
+                    let animItemPoint = window.innerHeight - animItemHeight;
+                    if (animItemHeight > window.innerHeight) {
+                        animItemPoint = window.innerHeight - window.innerHeight/animStart;
+                    }
+
+                    if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+                        animItem.classList.add('active');
+                    } else {
+                        animItem.classList.remove('active');
+                    }
+                }
+            }
+            function offset(el) {
+                const rect = el.getBoundingClientReact(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                    scrollTop  = window.pageYOffset || document.documentElement.scrollTop;
+                return {top: react.top + scrollTop, left: react.left + scrollLeft};
+            }*/
+
+/*$(window).bind('scroll', parallax);
+            function parallax() {
+                let scrolled = $(window).scrollTop();
+                $('#thirdimg').css('bottom', (scrolled*0.2) + 'px');
+            }*/
+</script>
+
+
+

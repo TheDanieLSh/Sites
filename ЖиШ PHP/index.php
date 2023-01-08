@@ -1,3 +1,20 @@
+<?php
+
+    $db = new PDO(dsn: "mysql:host=localhost;dbname=zhish", username: "root", password: "");
+    $smn = [];
+    $tlou = [];
+    if ($query = $db -> query("SELECT * FROM Comics WHERE Series = 'Spider-Man Noire. Vol 2'")) {
+        $smn = $query -> fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        echo $db -> errorInfo();
+        }
+    if ($query = $db -> query("SELECT * FROM Comics WHERE Series = 'TLoU: American Dreams'")) {
+        $tlou = $query -> fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        echo $db -> errorInfo();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,35 +25,6 @@
         <link rel="stylesheet" href="styles.css" type="text/css"/>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <title>ЖиШ</title>
-        <script>
-            $(function()
-            {
-                $('#zhishlogo').animate({top: '80px', opacity: '1'}, 900);
-                $('#cookies').animate({bottom: '5px'}, 500);
-
-                $('.navig').click(function() {
-                    $('body').animate({
-                        scrollTop: $($.attr(this, 'href')).offset().top
-                    }, 1000)
-                    return false;
-                })
-                
-                $('.accept').click(function() {
-                    $('#cookies').hide();
-                    $('#popup').hide();
-                    $('#pelena').hide();
-                    $('body').removeClass('nooverflow');
-                })
-                $('.decline').click(function() {
-                    $('#cookies').hide();
-                    $('#popup').removeClass('popuphide');
-                    $('#popup').addClass('popupshow');
-                    $('#popup').show();
-                    $('#pelena').show();
-                    $('body').addClass('nooverflow');              
-                })             
-            })
-        </script>        
     </head>
     <body>
         <div id="pelena"></div>
@@ -45,7 +33,7 @@
             <button class="accept knopka">Accept</button>
             <button class="decline knopka">Decline</button>
         </div>
-        <div id="popup" class="popuphide">
+        <div id="popup">
             <div>
                 <img src="gru.jpg">
             </div>
@@ -78,42 +66,21 @@
         <section id="spisok"> 
             <div id="spisokrabot">СПИСОК НАШИХ РАБОТ</div>
             <div id="SMN">Человек-Паук Нуар. Том 2</div>
+        <?php foreach ($smn as $data): ?>
             <div class="issue">
-                <a href="https://vk.com/album-197185577_273241219" target="_blank"><img src="smn1.jpg" class="oblozhki"></a>
-                <p>Spider-Man Noire. Vol 2</p>
-                <p>Issue 1</p>
+                <a href=<?= $data['Link']; ?> target="_blank"><img src=<?= $data['Cover']; ?> class="oblozhki"></a>
+                <p><?= $data['Series']; ?></p>
+                <p><?= $data['Issue']; ?></p>
             </div>
-            <div class="issue">
-                <a href="https://vk.com/album-197185577_273825123" target="_blank"><img src="smn2.jpg" class="oblozhki"></a>
-                <p>Spider-Man Noire. Vol 2</p>
-                <p>Issue 2</p>
-            </div>
-            <div class="issue">
-                <a href="https://vk.com/album-197185577_276249607" target="_blank"><img src="smn3.jpg" class="oblozhki"></a>
-                <p>Spider-Man Noire. Vol 2</p>
-                <p>Issue 3</p>
-            </div>
+        <?php endforeach; ?>
             <div id="TLOU">The Last of Us: Американские Мечты</div>
+        <?php foreach ($tlou as $data): ?>
             <div class="issue">
-                <a href="https://vk.com/album-197185577_272592291" target="_blank"><img src="tlou1.jpg" class="oblozhki"></a>
-                <p>TLoU: American Dreams</p>
-                <p>Issue 1</p>
+                <a href=<?= $data['Link']; ?> target="_blank"><img src=<?= $data['Cover']; ?> class="oblozhki"></a>
+                <p><?= $data['Series']; ?></p>
+                <p><?= $data['Issue']; ?></p>
             </div>
-            <div class="issue">
-                <a href="https://vk.com/album-197185577_272592325" target="_blank"><img src="tlou2.jpg" class="oblozhki"></a>
-                <p>TLoU: American Dreams</p>
-                <p>Issue 2</p>
-            </div>
-            <div class="issue">
-                <a href="https://vk.com/album-197185577_272817359" target="_blank"><img src="tlou3.jpg" class="oblozhki"></a>
-                <p>TLoU: American Dreams</p>
-                <p>Issue 3</p>
-            </div>  
-            <div class="issue">
-                <a href="https://vk.com/album-197185577_272948990" target="_blank"><img src="tlou4.jpg" class="oblozhki"></a>
-                <p>TLoU: American Dreams</p>
-                <p>Issue 4</p>
-            </div>
+        <?php endforeach; ?>
         </section>
         <section id="kontakti">
             <hr id="footerhr">
@@ -124,4 +91,31 @@
             <br>
         </section>        
     </body>
+    <script>
+    $('#zhishlogo').animate({ top: '80px', opacity: '1' }, 900);
+    $('#cookies').animate({ bottom: '5px' }, 500);
+
+    let page = $('html, body');
+    $('a[href*="#"]').click(function () {
+        page.animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 1000)
+        return false;
+    })
+
+    $('#popup').hide();
+
+    $('.accept').click(function () {
+        $('#cookies').hide();
+        $('#popup').hide();
+        $('#pelena').hide();
+        $('body').removeClass('nooverflow');
+    })
+    $('.decline').click(function () {
+        $('#cookies').hide();
+        $('#popup').show();
+        $('#pelena').show();
+        $('body').addClass('nooverflow');
+    }) 
+</script>
 </html>

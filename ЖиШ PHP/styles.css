@@ -26,8 +26,6 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: #e0e0e0;
 }
 
@@ -42,8 +40,6 @@ nav {
 
 nav > ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
 }
@@ -223,7 +219,6 @@ p a:hover {
 }
 
 #footerhr {
-    margin: 0;
     height: 5px;
     border: 0;
     background-color: #ada8a8;
@@ -264,11 +259,7 @@ p a:hover {
     margin: 3px;
 }
 
-.popuphide {
-    display: none;
-}
-
-.popupshow {
+#popup {
     display: flex;
     align-items: center;
     position: fixed;
@@ -283,13 +274,13 @@ p a:hover {
 }
 
 @media screen and (max-width: 480px) {
-    .popupshow {
+    #popup {
         display: block;
         text-align: center;
         left: 0;
         top: 20%;        
     }
-    .popupshow img {
+    #popup img {
         height: 305px;
     }
 }

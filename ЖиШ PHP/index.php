@@ -1,14 +1,14 @@
 <?php
 
-    $db = new PDO(dsn: "mysql:host=localhost;dbname=zhish", username: "root", password: "");
+    $db = new PDO(dsn: "mysql:host=localhost;dbname=zhishdata", username: "Danila", password: "$7V7m@uYTiD6");
     $smn = [];
     $tlou = [];
-    if ($query = $db -> query("SELECT * FROM Comics WHERE Series = 'Spider-Man Noire. Vol 2'")) {
+    if ($query = $db -> query("SELECT * FROM zhishnotcmsdata WHERE Series = 'Spider-Man Noire. Vol 2'")) {
         $smn = $query -> fetchAll(PDO::FETCH_ASSOC);
     } else {
         echo $db -> errorInfo();
         }
-    if ($query = $db -> query("SELECT * FROM Comics WHERE Series = 'TLoU: American Dreams'")) {
+    if ($query = $db -> query("SELECT * FROM zhishnotcmsdata WHERE Series = 'TLoU: American Dreams'")) {
         $tlou = $query -> fetchAll(PDO::FETCH_ASSOC);
     } else {
         echo $db -> errorInfo();

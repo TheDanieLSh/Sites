@@ -1,6 +1,6 @@
 <?php
 
-    $db = new PDO(dsn: "mysql:host=localhost;dbname=zhishdata", username: "Danila", password: "$7V7m@uYTiD6");
+    $db = new PDO("mysql: host=localhost; dbname=zhishdata", "Danila", "$7V7m@uYTiD6");
     $smn = [];
     $tlou = [];
     if ($query = $db -> query("SELECT * FROM zhishnotcmsdata WHERE Series = 'Spider-Man Noire. Vol 2'")) {

@@ -1,0 +1,146 @@
+<html>
+
+<head>
+	<style>
+		.lox {
+			position: absolute;
+			left: 500px;
+			top: 500px;
+			width: 130px;
+			height: 60px;
+			font-size: 25px;
+			color: white;
+			font-weight: bold;
+			text-shadow: 1px 1px 1px yellow;
+			color: black;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body style="overflow: hidden;" bgcolor="grey">
+	<div class="lox">
+		<div>Screensaver</div>
+		<div>Sample</div>
+	</div>
+	<script>
+		let lox = document.querySelector('.lox');
+		let screenHeight = window.innerHeight;
+		let screenWidth = window.innerWidth;
+		let position;
+		let topc;
+		let leftc;
+		const loxwidth = parseInt(getComputedStyle(lox).width);
+		const loxheight = parseInt(getComputedStyle(lox).height);
+		screensave();
+		function screensave() {
+			topc = parseInt(getComputedStyle(lox).top);
+			leftc = parseInt(getComputedStyle(lox).left);
+			let vec;
+			const range = [1, 2, 3, 4];
+			let rnd = range[Math.floor(Math.random() * 4)];
+			if (topc >= (screenHeight - loxheight)) {
+				position = 'bottom';
+			}
+			else if (topc <= 0) {
+				position = 'top';
+			}
+			else if (leftc >= (screenWidth - loxwidth)) {
+				position = 'right';
+			}
+			else if (leftc <= 0) {
+				position = 'left';
+			}
+			switch (position) {
+				case "top":
+					switch (true) {
+						case rnd <= 2:
+							vec = 'leftdown';
+							break;
+						case rnd >= 2:
+							vec = 'rightdown';
+							break;
+					}
+					break;
+				case "bottom":
+					switch (true) {
+						case rnd <= 2:
+							vec = 'leftup';
+							break;
+						case rnd >= 2:
+							vec = 'rightup';
+							break;
+					}
+					break;
+				case "left":
+					switch (true) {
+						case rnd <= 2:
+							vec = "rightup";
+							break;
+						case rnd >= 2:
+							vec = "rightdown";
+					}
+					break;
+				case "right":
+					switch (true) {
+						case rnd <= 2:
+							vec = "leftup";
+							break;
+						case rnd >= 2:
+							vec = "leftdown";
+					}
+					break;
+				default:
+					switch (true) {
+						case rnd == 1:
+							vec = 'leftup';
+							break;
+						case rnd == 2:
+							vec = 'rightup';
+							break;
+						case rnd == 3:
+							vec = 'leftdown';
+							break;
+						case rnd == 4:
+							vec = 'rightdown';
+							break;
+					}
+					break;
+			}
+			const interval = setInterval(() => vector(vec));
+
+			function vector(x) {
+				screenHeight = window.innerHeight;
+				screenWidth = window.innerWidth;
+				topc = lox.offsetTop;
+				leftc = lox.offsetLeft;
+
+				if ((topc >= (screenHeight - loxheight)) || (topc <= 0) || (leftc >= (screenWidth - loxwidth)) || (leftc <= 0)) {
+					clearInterval(interval);
+					screensave();
+				}
+
+				switch (x) {
+					case 'leftup':
+						lox.style.top = topc - 1;
+						lox.style.left = leftc - 1;
+						break;
+					case 'rightup':
+						lox.style.top = topc - 1;
+						lox.style.left = leftc + 1;
+						break;
+					case 'leftdown':
+						lox.style.top = topc + 1;
+						lox.style.left = leftc - 1;
+						break;
+					case 'rightdown':
+						lox.style.top = topc + 1;
+						lox.style.left = leftc + 1;
+						break;
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>

@@ -122,6 +122,17 @@
     padding: 20px;
 }
 
+.footer {
+    background-color: #3e44ad;
+    border-top: solid grey;
+}
+
+.footer_text {
+    position: relative;
+    left: 90%;
+    width: 150px;
+}
+
 @keyframes rightShift {
     from {
         transform: translateX(-20px);

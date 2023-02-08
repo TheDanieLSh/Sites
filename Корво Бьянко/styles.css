@@ -28,7 +28,8 @@
   cursor: pointer;
 }
 
-#upDown, #downUp {
+#upDown,
+#downUp {
   position: absolute;
   background-color: white;
   width: 100%;
@@ -77,31 +78,31 @@
 }
 
 .menu_item {
+  position: relative;
   padding: 20px 0;
   cursor: pointer;
 }
 
 .menu_item::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 4px;
   background-color: white;
 }
 
 .menu_item::after {
-  content: '';
+  content: "";
   position: absolute;
   height: 4px;
   background-color: white;
-  top: 20px;
-  width: 400px;
+  top: 85px;
 }
 
-.menu_item:hover::before {
+.menu_item:hover::before, .menu_item:hover::after {
   -webkit-animation: menu_hover;
           animation: menu_hover;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -145,7 +146,8 @@
           animation-duration: 0.8s;
 }
 
-.subheader2, .subheader2_two {
+.subheader2,
+.subheader2_two {
   position: absolute;
   top: 640px;
   right: 20px;

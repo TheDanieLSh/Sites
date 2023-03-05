@@ -73,7 +73,7 @@
     $(window).on('popstate', uricheck);
 
     $('.mainPage').on('click', function() {
-        history.pushState(null, null, '/corvo/');
+        history.pushState(null, null, '/corvo');
         uricheck();
     })
     $('.historyPage').on('click', function() {

@@ -45,7 +45,7 @@
 </body>
 <script>
     uricheck();
-    $(document).on('click', function(event) {
+    $(document).on('click', function (event) {
         if (event.target.closest('.menu_button')) {
             $('#upDown').toggleClass('clickedUp');
             $('#downUp').toggleClass('clickedDown unclicked');
@@ -59,30 +59,32 @@
         }
     })
 
-    const changingText = require('/public/changing-text.json');
-    let infos = JSON.parse(changingText);
-
     function uricheck() {
-        if (document.location.pathname == "/corvo/history") {
-            $('.info').html('Корво Бьянко имеет богатую историю, начало которой скрывается во мраке веков. По легенде, винодельню основал один из сыновей владельца виноградника Помероль, который был лишён наследства и отправился в изгнание с саженцами винограда карванере. Сначала винодельня была имуществом некого господина Болюса герба Палачей, яркого человека родом из Каэдвена. Прапрапрапрадед Болюса действительно был палачом, получившим должность при дворе в Боклере. За усердную и преданную службу князь тех времён пожаловал ему винодельню с прилежащими землями. На старости лет Болюс утратил обоняние и слух, а затем лекари запретили ему употреблять алкоголь. Тем не менее хозяин виноградников не отчаялся и не прекратил заниматься своим делом, а наоборот, стал выпускать ещё больше вина. Болюс созывал друзей со всей округи и устраивал шумные празднества, угощая их собственным вином, радуясь, что хоть их оно делает счастливым. В то же время из-за достаточно расточительного образа жизни Болюса имение начало приходить в упадок. Следующим хозяином Корво Бьянко был барон Россель, которому не удалось восстановить величие винодельни в том числе и из-за пагубного пристрастия к картам. Ситуация усугубилась, поскольку осенью 1274 года грибок убил всю виноградную лозу. В конце концов, имение было продано с аукциона и стало собственностью королевской казны.');
-        } else if (document.location.pathname == "/corvo/") {
-            $('.info').html('Построенная на эльфских руинах, одна из самых старых виноделен в княжестве, называвшаяся в Старшей Речи "Гвин Кербин". Именно здесь рождается чрезвычайно оригинальноевино Сепременто.');
-        }
+        fetch('/corvo/public/changing-text.json')
+            .then(async (response) => {
+                const infos = await response.json();
+                if (document.location.pathname == "/corvo/") {
+                    $('.info').html(infos.mainPage);
+                }
+                else if (document.location.pathname == "/corvo/history") {
+                    $('.info').html(infos.historyPage);
+                }
+            })
     }
 
     $(window).on('popstate', uricheck);
 
-    $('.mainPage').on('click', function() {
+    $('.mainPage').on('click', function () {
         history.pushState(null, null, '/corvo/');
         uricheck();
     })
-    $('.historyPage').on('click', function() {
+    $('.historyPage').on('click', function () {
         history.pushState(null, null, '/corvo/history');
         uricheck();
     })
-    
+
     let scrolledPevious;
-    $(document).on('scroll', function() {
+    $(document).on('scroll', function () {
         let scrolled = $(window).scrollTop();
         if (scrolled > scrolledPevious) {
             $('.panel').css({ transform: 'translateY(-50px)' });

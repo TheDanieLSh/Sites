@@ -179,9 +179,9 @@
 
 .footer_text {
   position: relative;
-  top: 10px;
+  padding: 0 10px;
   left: 80%;
-  width: 275px;
+  width: 18vw;
   font-size: 30px;
 }
 

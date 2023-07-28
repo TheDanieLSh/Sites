@@ -60,13 +60,13 @@
     })
 
     function uricheck() {
-        fetch('/corvo/public/changing-text.json')
+        fetch('./public/changing-text.json')
             .then(async (response) => {
                 const infos = await response.json();
-                if (document.location.pathname == "/corvo/") {
+                if (document.location.pathname == "/") {
                     $('.info').html(infos.mainPage);
                 }
-                else if (document.location.pathname == "/corvo/history") {
+                else if (document.location.pathname == "/history") {
                     $('.info').html(infos.historyPage);
                 }
             })
@@ -75,11 +75,11 @@
     $(window).on('popstate', uricheck);
 
     $('.mainPage').on('click', function () {
-        history.pushState(null, null, '/corvo/');
+        history.pushState(null, null, '');
         uricheck();
     })
     $('.historyPage').on('click', function () {
-        history.pushState(null, null, '/corvo/history');
+        history.pushState(null, null, '/history');
         uricheck();
     })
 

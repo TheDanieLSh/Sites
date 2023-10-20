@@ -2,7 +2,7 @@
 
 <head>
 	<style>
-		.lox {
+		.screensaver {
 			position: absolute;
 			left: 500px;
 			top: 500px;
@@ -18,34 +18,34 @@
 	</style>
 </head>
 
-<body style="overflow: hidden;" bgcolor="grey">
-	<div class="lox">
+<body style="overflow: hidden;">
+	<div class="screensaver">
 		<div>Screensaver</div>
 		<div>Sample</div>
 	</div>
 	<script>
-		let lox = document.querySelector('.lox');
+		let screensaver = document.querySelector('.screensaver');
 		let screenHeight = window.innerHeight;
 		let screenWidth = window.innerWidth;
 		let position;
 		let topc;
 		let leftc;
-		const loxwidth = parseInt(getComputedStyle(lox).width);
-		const loxheight = parseInt(getComputedStyle(lox).height);
+		const containerWidth = parseInt(getComputedStyle(screensaver).width);
+		const containerHeight = parseInt(getComputedStyle(screensaver).height);
 		screensave();
 		function screensave() {
-			topc = parseInt(getComputedStyle(lox).top);
-			leftc = parseInt(getComputedStyle(lox).left);
+			topc = parseInt(getComputedStyle(screensaver).top);
+			leftc = parseInt(getComputedStyle(screensaver).left);
 			let vec;
 			const range = [1, 2, 3, 4];
 			let rnd = range[Math.floor(Math.random() * 4)];
-			if (topc >= (screenHeight - loxheight)) {
+			if (topc >= (screenHeight - containerHeight)) {
 				position = 'bottom';
 			}
 			else if (topc <= 0) {
 				position = 'top';
 			}
-			else if (leftc >= (screenWidth - loxwidth)) {
+			else if (leftc >= (screenWidth - containerWidth)) {
 				position = 'right';
 			}
 			else if (leftc <= 0) {
@@ -112,30 +112,30 @@
 			function vector(x) {
 				screenHeight = window.innerHeight;
 				screenWidth = window.innerWidth;
-				topc = lox.offsetTop;
-				leftc = lox.offsetLeft;
+				topc = screensaver.offsetTop;
+				leftc = screensaver.offsetLeft;
 
-				if ((topc >= (screenHeight - loxheight)) || (topc <= 0) || (leftc >= (screenWidth - loxwidth)) || (leftc <= 0)) {
+				if ((topc >= (screenHeight - containerHeight)) || (topc <= 0) || (leftc >= (screenWidth - containerWidth)) || (leftc <= 0)) {
 					clearInterval(interval);
 					screensave();
 				}
 
 				switch (x) {
 					case 'leftup':
-						lox.style.top = topc - 1;
-						lox.style.left = leftc - 1;
+						screensaver.style.top = topc - 1;
+						screensaver.style.left = leftc - 1;
 						break;
 					case 'rightup':
-						lox.style.top = topc - 1;
-						lox.style.left = leftc + 1;
+						screensaver.style.top = topc - 1;
+						screensaver.style.left = leftc + 1;
 						break;
 					case 'leftdown':
-						lox.style.top = topc + 1;
-						lox.style.left = leftc - 1;
+						screensaver.style.top = topc + 1;
+						screensaver.style.left = leftc - 1;
 						break;
 					case 'rightdown':
-						lox.style.top = topc + 1;
-						lox.style.left = leftc + 1;
+						screensaver.style.top = topc + 1;
+						screensaver.style.left = leftc + 1;
 						break;
 				}
 			}

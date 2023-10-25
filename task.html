@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="spisok"></ul>
+    <div class="current"></div>
+</body>
+
+</html>
+
+<script>
+    // const fruits = ['apple', 'banana', 'ananas', 'qiwi'];
+    // for (let i = 0; i < fruits.length; i++) {
+    //     const ul = document.querySelector('ul');
+    //     const li = document.createElement('li');
+    //     li.append(fruits[i]);
+    //     ul.append(li);
+    // }
+    // const lis = document.getElementsByTagName('li');
+    // lis.forEach(element => {
+    //     element.addEventListener('click', () => {
+    //         document.querySelector('current').innerHTML(e.target.innerHTML);
+    //     })
+    // });
+
+    function maskify(cc) {
+        const minusFour = cc.length - 4;
+        const arrCc = cc.split('');
+        const masked = arrCc.map((x, i) => {
+            if (i < minusFour) {
+                return '#'
+            }
+            return x
+        })
+        return masked.join('')
+    }
+
+    console.log('task 4 ---');
+    const inData = "user.name.firstname=Bob&user.name.Lastname=Smith&user.favoritecolor=Light%20Blue&experiments.theme=dark";
+    const obj = {};
+    const levell = inData.split('&');
+    const level2 = [];
+    const level3 = [];
+    levell.forEach(x => {
+        if (x.includes('.')) {
+            const a = x.split('.');
+            level2.push(a);
+        }
+    });
+    level2.forEach(x => {
+        if (x.includes('=')) {
+            const a = x.split('=');
+            console.log('-->', a);
+            level3.push(a[1]);
+        }
+    });
+    console.log(levell);
+    console.log(level2);
+    console.log(level3);
+    console.log(obj);
+
+    const ar1 = [1, 2]
+    const ar2 = [1, 2]
+    console.log(ar1 === ar2);
+</script>

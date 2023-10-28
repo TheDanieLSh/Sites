@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer>
+        console.log('task 1 ---');
+        const first = [1, 2, 3, 4];
+        const second = [3, 4, 5, 6];
+        function intersection(a, b) {
+            let third = [];
+            a.forEach(x => {
+                second.forEach(y => {
+                    if (x == y) third.push(x);
+                })
+            });
+            return third;
+        };
+        console.log(intersection(first, second));
+
+
+        console.log('task 2 ---');
+        let obj1 = { item: 1 };
+        console.log('obj1', obj1);
+        let obj2 = obj1;
+        obj1 = { item: 2 };
+        console.log('obj1', obj1);
+        console.log('obj2', obj2);
+
+
+        console.log('task 3 ---');
+        function isIsogram(str) {
+            const arr = str.split('');
+            let answer;
+            for (a = 0; a < arr.length-1; a++) {
+                for (b = 0; b < arr.length; b++) {
+                    if ((arr[a] == arr[b]) && (a != b)) {
+                        answer = 'no';
+                        break
+                    } else {
+                        answer = 'yes'
+                    }
+                }
+            }
+            return answer;
+            //или можно сделать сравнением длины Set'а с длиной слова
+        }
+        console.log(isIsogram('ABOBA'));
+        console.log((isIsogram('gao')));
+
+
+        console.log('task 4 ---');
+        const inData = "user.name.firstname=Bob&user.name.Lastname=Smith&user.favoritecolor=Light%20Blue&experiments.theme=dark";
+        const obj = {};
+        const level1 = inData.split('&');
+        const level2 = [];
+        const level3 = [];
+        level1.forEach(x => {
+            if (x.includes('.')) {
+                const a = x.split('.');
+                level2.push(a);
+            }
+        })
+        level2.forEach(x => {
+            if (x.includes('=')) {
+                const a = x.split('=');
+                console.log('-->', a);
+                level3.push(a[1]);
+            }
+        })
+        console.log(level1);
+        console.log(level2);
+        console.log(level3);
+        console.log(obj);
+
+        console.log('task 5 ---');
+        function maskify(cc) {
+        const minusFour = cc.length - 4;
+        const arrCc = cc.split('');
+        const masked = arrCc.map((x, i) => {
+            if (i < minusFour) {
+                return '#'
+            }
+            return x
+        })
+        return masked.join('')
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

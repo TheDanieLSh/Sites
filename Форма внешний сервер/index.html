@@ -34,15 +34,20 @@
             title: form.title.value
         }
 
-        data.forEach(element => {
-            for (let key in element) {
-                if (key == 'userID') {
-                    if (element[key] == userID) {
-
-                    }
-                }
+        let result = true;
+        data.every(element => {
+            if ((element.userId == fieldsValues.userID) && (element.title == fieldsValues.title)) {
+                document.cookie = `userID=${fieldsValues.userID}; title=${fieldsValues.title}`;
+                return false
+            } else {
+                result = false
             }
         });
+        if (result == false) {
+            alert('Совпадений не найдено')
+        }
+
+        console.log(document.cookie);
     }
 </script>
 <body>

@@ -37,7 +37,8 @@
         let result = true;
         data.every(element => {
             if ((element.userId == fieldsValues.userID) && (element.title == fieldsValues.title)) {
-                document.cookie = `userID=${fieldsValues.userID}; title=${fieldsValues.title}`;
+                localStorage.setItem('userID', fieldsValues.userID);
+                localStorage.setItem('title', fieldsValues.title)
                 return false
             } else {
                 result = false
@@ -47,7 +48,7 @@
             alert('Совпадений не найдено')
         }
 
-        console.log(document.cookie);
+        console.log(localStorage.getItem(title));
     }
 </script>
 <body>
